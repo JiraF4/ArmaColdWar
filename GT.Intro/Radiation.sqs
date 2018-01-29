@@ -1,0 +1,7 @@
+_LoadVar = preprocessFile "LoadVar.sqs"
+_SaveVar = preprocessFile "SaveVar.sqs"
+#round
+	_obs = list RADFIELD
+	"if(side _x == WEST)then{_res = [_x, ""rad""] call _LoadVar; [_x, ""rad"", _res + 1] call _SaveVar;if(_res > 1000)then{_x globalChat format[""%1's balls glowing green!"", name _x];};};" forEach _obs
+~0.1
+goto "round"

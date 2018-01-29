@@ -1,0 +1,6 @@
+private ["_obj", "_var", "_val"];
+_obj = (_this select 0);
+_var = (_this select 1);
+_val = (_this select 2);
+_var = (name _obj) + _var;
+call format["%1 = %2;publicVariable ""%1"";", _var, _val];

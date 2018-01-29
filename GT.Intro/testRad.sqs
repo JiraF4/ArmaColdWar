@@ -1,0 +1,4 @@
+_obj = (_this select 0)
+_LoadVar = preprocessFile "LoadVar.sqs"
+_res = [_obj, "rad"] call _LoadVar;
+GENNADIY globalchat format["RES: %1", _res]

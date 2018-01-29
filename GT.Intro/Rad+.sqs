@@ -1,0 +1,5 @@
+_obj = (_this select 1)
+_LoadVar = preprocessFile "LoadVar.sqs"
+_SaveVar = preprocessFile "SaveVar.sqs"
+_res = [_obj, "rad"] call _LoadVar; 
+[_obj, "rad", _res + 150] call _SaveVar;

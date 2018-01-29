@@ -1,0 +1,139 @@
+version=11;
+class Mission
+{
+	addOns[]=
+	{
+		"Kolo"
+	};
+	addOnsAuto[]=
+	{
+		"Kolo"
+	};
+	randomSeed=5208579;
+	class Intel
+	{
+	};
+	class Groups
+	{
+		items=3;
+		class Item0
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10715.915039,26.730000,3988.592529};
+					id=0;
+					side="WEST";
+					vehicle="SoldierWB";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.600000;
+					init="[this, ""rad"", 3] exec ""SaveVar.sqs""; this addAction [""Get "" + name this + "" rad"", ""testRad.sqs""];";
+				};
+			};
+		};
+		class Item1
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10778.957031,26.730000,4028.036621};
+					id=1;
+					side="LOGIC";
+					vehicle="Logic";
+					leader=1;
+					skill=0.600000;
+					text="GENNADIY";
+					init="[] exec ""Radiation.sqs""";
+				};
+			};
+		};
+		class Item2
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={10724.063477,26.730000,3988.970215};
+					id=4;
+					side="WEST";
+					vehicle="SoldierWB";
+					player="PLAY CDG";
+					leader=1;
+					skill=0.600000;
+					init="[this, ""rad"", 3] exec ""SaveVar.sqs""; this addAction [""Get "" + name this + "" rad"", ""testRad.sqs""];";
+				};
+			};
+		};
+	};
+	class Vehicles
+	{
+		items=2;
+		class Item0
+		{
+			position[]={10739.952148,26.730000,4036.667480};
+			azimut=195.000000;
+			id=2;
+			side="EMPTY";
+			vehicle="Jeep";
+			leader=1;
+			skill=0.600000;
+			init="this addAction [""Test"", ""Test.sqs""]";
+		};
+		class Item1
+		{
+			position[]={10718.860352,26.730000,3993.505859};
+			azimut=175.000000;
+			id=3;
+			side="EMPTY";
+			vehicle="Kolo";
+			leader=1;
+			skill=0.600000;
+			init="this addAction [""Rad+"", ""Rad+.sqs""]";
+		};
+	};
+	class Sensors
+	{
+		items=1;
+		class Item0
+		{
+			position[]={10758.202148,26.730000,3993.263916};
+			activationBy="ANY";
+			repeating=1;
+			age="UNKNOWN";
+			name="RADFIELD";
+			class Effects
+			{
+			};
+		};
+	};
+};
+class Intro
+{
+	randomSeed=2854915;
+	class Intel
+	{
+	};
+};
+class OutroWin
+{
+	randomSeed=3389955;
+	class Intel
+	{
+	};
+};
+class OutroLoose
+{
+	randomSeed=6246915;
+	class Intel
+	{
+	};
+};
