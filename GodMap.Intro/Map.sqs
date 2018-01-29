@@ -1,0 +1,93 @@
+; load main variables
+_map = (_this select 0)
+_iNp = (_this select 1)
+_box = (_this select 2)
+_sca = (_this select 3)
+_mhe = (_this select 4)
+_ofm = (_this select 5)
+_hMu = (_this select 6)
+_mTr = (_this select 7)
+_god = (_this select 8)
+_pos = getPos _map
+_gpo = +_pos
+? _iNp : _bP1 = getPos (_box select 0)
+? _iNp : _bP2 = getPos (_box select 1)
+? _iNp : _dpi = [((_bP1 select 0) - (_bP2 select 0))/2, ((_bP1 select 1) - (_bP2 select 1))/2]
+? _iNp and (_dpi select 0) < 0: _dpi set [0, -(_dpi select 0)]
+? _iNp and (_dpi select 1) < 0: _dpi set [1, -(_dpi select 1)]
+? _iNp : _pos = [((_bP1 select 0)+(_bP2 select 0))/2, ((_bP1 select 1)+(_bP2 select 1))/2, 0]
+? _iNp : _box = _dpi
+_ofm = (((_box select 0) + (_box select 1))/80)/_ofm
+
+_TECHCOLOR = [[0.3,0.3,0  ],"M1Abrams","T80"  ]
+_AIRCOLOR  = [[0  ,0.3,0.3],"UH60"    ,"Kamov"]
+
+; start god script
+"[_x, +_pos, +_box, _sca, _mhe, _hMu, getPosASL _map] exec ""BeGod.sqs""" forEach _god
+
+; second variables
+_poc = 0
+_spo = +_pos
+_rPo = +_box
+_dPo = [0, 0, 0]
+_dSi = 0.05*_sca
+_off = [_ofm,_ofm]
+_mSi = (_box select 0)
+? _mSi < (_box select 1) : _mSi = (_box select 1)
+_hDi = ((_box select 0)+(_box select 1))/2
+_rDi = sqrt((_box select 0)*(_box select 0)+(_box select 1)*(_box select 1))
+
+; round script
+_SCRIPT = preprocessFile "MapRound.sqs"
+
+; main while (fast edition)
+_end = 0
+#scanRound
+	_i = 0
+	while"_i < 9999 and _end == 0"do{call _SCRIPT; _i = _i + 1}
+? _end == 1 : GENNADIY GlobalChat Format["Points: %1", _poc]; goto "radarRoundStart";
+~0.0000001
+goto "scanRound"
+
+; radar variables
+
+#radarRoundStart
+; radar round script
+_SCRIPT2 = preprocessFile "MapRadarRound.sqs"
+
+#radarRound
+	; get objects list
+	_obL = list _mTr
+	"_tOb = _x; if(side _tOb != sideLogic)then{call _SCRIPT2;};" forEach _obL
+~0.1
+goto "radarRound"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

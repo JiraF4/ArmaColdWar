@@ -1,0 +1,10 @@
+_obj = (_this select 0)
+_mpo = (_this select 1)
+_box = (_this select 2)
+_sca = (_this select 3)
+_mhe = (_this select 4)
+_hMu = (_this select 5)
+_gpo = (_this select 6)
+globalMap = [+_mpo, _box, _sca, _mhe, _hMu, +_gpo]
+_SCRIPT = preprocessFile "GodFire.sqs"
+_obj addEventHandler ["Fired", _SCRIPT]

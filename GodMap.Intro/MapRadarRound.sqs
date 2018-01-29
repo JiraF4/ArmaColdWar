@@ -1,0 +1,43 @@
+//;get obj pos
+_pOb = getPosASL _tOb;
+_rPo = [(_pOb select 0)-(_pos select 0), (_pOb select 1)-(_pos select 1), 0];
+
+//;get drop pos
+_dPo set [0, (_gpo select 0)+((_rPo select 0)/_mSi)*_sca];
+_dPo set [1, (_gpo select 1)+((_rPo select 1)/_mSi)*_sca];
+_dPo set [2, (((((_pOb select 2)+1.5*_sca)/_hDi)*_sca)*_hMu)+_mhe];
+
+//;obj color
+_col = [0, 0, 0];
+if(side _tOb == west      )then{_col = [0, 1, 0]};
+if(side _tOb == east      )then{_col = [1, 0, 0]};
+if(side _tOb == resistance)then{_col = [0, 1, 0]};
+if(side _tOb == civilian  )then{_col = [0, 0, 1]};
+if(side _tOb == empty  )then{_col = [1, 1, 1]};
+if(!alive _tOb)then{_col = [1, 1, 1];};
+
+//;obj size
+//;_sOb = [_dSi/2];
+_sOb = [(_sca/_hDi)*4];
+if(!alive _tOb)then{_sOb = _sOb + [(_sca/_hDi)*8];};
+
+//;obj velocity
+_vOb = [0, 0, 0];
+if(!alive _tOb)then{_vOb = [(0.01-random(0.02))*_sca, (0.01-random(0.02))*_sca, 0.02*_sca];};
+
+//; drop shape
+_dSh = "cl_basic";
+if(!alive _tOb)then{_dSh = "cl_fire";};
+
+_mbo = [((_box select 0)/_mSi)*_sca, ((_box select 1)/_mSi)*_sca];
+_inB = false;
+if((_dPo select 0) > (_gpo select 0)-(_mbo select 0) and (_dPo select 0) < (_gpo select 0)+(_mbo select 0) and (_dPo select 1) > (_gpo select 1)-(_mbo select 1) and (_dPo select 1) < (_gpo select 1)+(_mbo select 1))then{_inB = true;};
+
+//; drop drop
+if(_inB)then{drop [_dSh, "", "Billboard", 1, 0.8, _dPo, _vOb, 1, 1.275, 1, 0, _sOb, [_col + [1], _col + [0]], [0, 1], 0, 0, "", "", ""];};
+
+//;TECHCOLOR
+if(_inB)then{if(alive _tOb and typeOf _tOb in _TECHCOLOR)then{drop [_dSh, "", "Billboard", 1, 0.8, _dPo, _vOb, 1, 1.275, 1, 0, [(_sca/_hDi)*8], [(_TECHCOLOR select 0) + [1], (_TECHCOLOR select 0) + [0]], [0, 1], 0, 0, "", "", ""];};};
+
+//;AIRCOLOR
+if(_inB)then{if(alive _tOb and typeOf _tOb in _AIRCOLOR )then{drop [_dSh, "", "Billboard", 1, 0.8, _dPo, _vOb, 1, 1.275, 1, 0, [(_sca/_hDi)*8], [(_AIRCOLOR  select 0) + [1], (_AIRCOLOR  select 0) + [0]], [0, 1], 0, 0, "", "", ""];};};

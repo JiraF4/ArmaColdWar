@@ -1,0 +1,9 @@
+_obj = (_this select 0)
+_pos = getPos _obj
+_weapon = "weaponholder" createVehicle _pos
+_weapon addWeaponCargo  ["HK",1]
+_weapon addmagazineCargo["HK",3]
+_weapon addWeaponCargo  ["AK47",1]
+_weapon addmagazineCargo["AK47",3]
+_weapon addWeaponCargo  ["AK74",1]
+_weapon addmagazineCargo["AK74",3]

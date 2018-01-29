@@ -1,0 +1,36 @@
+_pos = (_this select 0)
+_wea = (_this select 1)
+_god = (_this select 2)
+
+_lOb = "Logic" createVehicle _pos;
+_lPo = getPosASL _lOb;
+deleteVehicle _lOb
+goto _wea;
+exit
+
+#AK47
+	_bom = "Grenade" camCreate _lPo
+	_bom setPos _lPo
+	_bom = "Grenade" camCreate _lPo
+	_bom setPos _lPo
+exit
+
+#AK74
+	_URAL = "Ural" createVehicle _lPo
+	_URAL setPosASL _lPo
+exit
+
+#HK
+_cou = 7
+#HKROUND
+_cou = _cou - 1
+	_bom = "Grenade" camCreate _lPo
+	_bom setPos _lPo
+? _cou <= 0 : exit
+~0.01
+goto "HKROUND"
+exit
+
+#CZ75
+	(typeOf _god) createUnit [_lPo, (group _god)]
+exit

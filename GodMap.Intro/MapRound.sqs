@@ -1,0 +1,35 @@
+//; points count
+_poc = _poc + 1;
+
+//;update variables
+_col = [0, 1, 0];
+
+//;get sccan pos height
+_spo set [0, (_pos select 0)+(_rPo select 0)];
+_spo set [1, (_pos select 1)+(_rPo select 1)];
+_lOb = "Logic" createVehicle _spo;
+_lPo = getPosASL _lOb;
+_lDi = sqrt((((_lPo select 0)-(_pos select 0))*((_lPo select 0)-(_pos select 0)))+(((_lPo select 1)-(_pos select 1))*((_lPo select 1)-(_pos select 1))));
+deleteVehicle  _lOb;
+_pHe = (_lPo select 2);
+
+//;get drop pos
+_dPo set [0, (_gpo select 0)+((_rPo select 0)/_mSi)*_sca];
+_dPo set [1, (_gpo select 1)+((_rPo select 1)/_mSi)*_sca];
+_dPo set [2, (((_pHe/_hDi)*_sca)*_hMu)+_mhe];
+
+//;get drop  color
+_col set [0, 1-_pHe/16];
+_col set [1, 1-_pHe/64];
+if(_pHe < 2)then{_col set [0, 0];_col set [1, 0];_col set [2, 1-_lDi/_rDi];};
+
+//;border
+if((_rPo select 0) == (_box select 0) or (_rPo select 0) <= -(_box select 0)+(_off select 0) or (_rPo select 1) == (_box select 1) or (_rPo select 1) <= -(_box select 1)+(_off select 1))then{_col = [0.4, 0.4, 0.05];_dPo set [2, _mhe+0.01];};
+
+//;spawn drop
+drop ["cl_basic", "", "Billboard", 1, 9999, _dPo, [0,0,0], 1, 1.275, 1, 0, [_dSi], [_col + [1]], [0], 0, 0, "", "", ""];
+
+//;increas relative pos
+_rPo set [0, (_rPo select 0) - (_off select 0)];
+if((_rPo select 0)<-(_box select 0))then{_rPo set [1, (_rPo select 1) - (_off select 1)]; _rPo set [0, (_box select 0)];};
+if((_rPo select 1)<-(_box select 1))then{_end = 1};
